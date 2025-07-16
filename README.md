@@ -1,5 +1,3 @@
-# Finally Fixed Space Issue
-# Confirming final git setup
-# Finally fixing push issue
-# .netrc Fix Commit
-# SSH authentication confirmed working
+# ATI Oracle Engine
+
+This system runs secure, modular AI rotors with backup/restore, snapshot rotation, agent execution, and cloud sync. Agents: Arbiter, Father, Soap, Watson. See configs/ai_config.json for model connections.
