@@ -1,8 +1,5 @@
 joblib
 scikit-learn
 scipy
-yxcyjq-codex/fix-installation-and-debugging-process
 fastapi
 uvicorn
-
-main
