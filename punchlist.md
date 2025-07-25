@@ -7,3 +7,4 @@
 - [x] Updated codex_controller to honor $SOAP_ROOT
 - [x] Ran codex_controller end-to-end with sample tasks
 - [x] Added .gitignore to avoid committing cache files
+- [x] Added httpx requirement to fix test import error
