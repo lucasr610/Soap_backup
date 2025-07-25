@@ -74,8 +74,10 @@ Other components include:
 1. Install Python 3.11 or later.
 2. Install required packages:
 
-   ```bash
+```bash
    pip install -r requirements.txt
-   ```
+```
+
+Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
 Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
