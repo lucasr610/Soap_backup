@@ -24,6 +24,10 @@ Other components include:
 - Logging and state backup
 - Vectorized search indexing
 
+## 🖥️ Frontend
+
+The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs to submit new tasks and view the current queue. The frontend is served directly by the FastAPI backend at the root URL.
+
 ---
 
 ## 🔁 Backup & Restore Utilities
