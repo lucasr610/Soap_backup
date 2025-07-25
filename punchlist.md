@@ -10,3 +10,4 @@
 - [x] Added httpx requirement to fix test import error
 - [x] Added Dockerfile and Makefile for dev workflow
 - [x] Created system_snapshot.py and upload_to_gcs.py utilities
+- [x] Added GitHub Actions CI workflow
