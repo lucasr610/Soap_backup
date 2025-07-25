@@ -13,3 +13,4 @@
 - [x] Added GitHub Actions CI workflow
 - [x] Replaced HTML frontend with React + Tailwind
 - [x] Finalized system delivery with full tooling and CI
+- [x] Removed large backup archive and cleaned up README cloud references

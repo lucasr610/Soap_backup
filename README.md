@@ -20,7 +20,6 @@ This platform uses a chain of **five protected agents** to handle SOP synthesis:
 
 Other components include:
 - Snapshot rotator
-- GCS cloud sync
 - Logging and state backup
 - Vectorized search indexing
 
@@ -39,7 +38,7 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
 - `restore_now.py`  
-  Triggers `+SPIN-UP+` to restore system state from GCS archive.  
+  Triggers `+SPIN-UP+` to restore system state from local snapshot. Optionally configure a GCS archive if needed.  
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
@@ -59,7 +58,7 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   Creates zip snapshots of the entire Soap directory and keeps the last five archives.
 
 - `upload_to_gcs.py`
-  Uploads a snapshot or other file to a specified Google Cloud Storage bucket.
+  Optional utility to upload a file to Google Cloud Storage.
 
 ---
 
