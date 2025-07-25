@@ -4,3 +4,4 @@ scipy
 fastapi
 uvicorn
 httpx
+google-cloud-storage

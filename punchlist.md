@@ -8,3 +8,5 @@
 - [x] Ran codex_controller end-to-end with sample tasks
 - [x] Added .gitignore to avoid committing cache files
 - [x] Added httpx requirement to fix test import error
+- [x] Added Dockerfile and Makefile for dev workflow
+- [x] Created system_snapshot.py and upload_to_gcs.py utilities

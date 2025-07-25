@@ -48,8 +48,14 @@ Other components include:
 - `warm_start_engine.py`  
   Loads TF-IDF vectors from `~/Soap/vector_store/` if present.
 
-- `rag_vectorizer.py`  
+- `rag_vectorizer.py`
   Updates the vector store from SOPs in `~/Soap/overlay/sops/`.
+
+- `system_snapshot.py`
+  Creates zip snapshots of the entire Soap directory and keeps the last five archives.
+
+- `upload_to_gcs.py`
+  Uploads a snapshot or other file to a specified Google Cloud Storage bucket.
 
 ---
 
