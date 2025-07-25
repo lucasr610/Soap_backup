@@ -62,3 +62,14 @@ Other components include:
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
+
+## 📦 Installation
+
+1. Install Python 3.11 or later.
+2. Install required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
