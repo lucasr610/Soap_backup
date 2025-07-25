@@ -1,32 +1,56 @@
-# Finally Fixed Space Issue
-# Confirming final git setup
-# Finally fixing push issue
-# .netrc Fix Commit
-# SSH authentication confirmed working
-## System Overview
+# ATI Oracle Engine
 
-This repository contains the ATI Nexus platform powering Maintenance Docs. The system uses a chain of five protected agents to convert raw maintenance instructions into detailed standard operating procedures (SOPs).
+The **ATI Oracle Engine** is the AI-driven backend of the ATI Nexus platform powering **Maintenance Docs**. It transforms raw, unstructured maintenance instructions into structured, verified, and human-readable **Standard Operating Procedures (SOPs)** using a secure, modular AI rotor framework.
 
-The pipeline operates on tasks placed in `~/Soap/agent_queue/` and outputs completed SOP files to `~/Soap/overlay/sops/`. Various triggers and rotor scripts manage backups, restoration, and cloud synchronization.
+---
 
+## 🧠 System Overview
 
-## Backup Utilities
+This platform uses a chain of **five protected agents** to handle SOP synthesis:
 
-- `backup_now.py` - Runs `~/Soap/triggers/+FULL_SAVE_NOW+` for an immediate full save.
-  Set `BACKUP_LOG_PATH` to override the default log file location (`~/Soap/logs/backup_now.log`).
-`SOAP_ROOT` can point to a custom Soap directory if the default `~/Soap` path differs.
-- `restore_now.py` - Restores the system from GCS by running the `+SPIN-UP+` trigger.
-  Use `RESTORE_LOG_PATH` to override the default log file (`~/Soap/logs/restore_now.log`).
-- `codex_controller.py` - Processes queued SOP tasks through all agents. Use
-  `--loop` to continuously monitor `~/Soap/agent_queue` and export completed
-  SOPs to `~/Soap/overlay/sops/`. Pass `--warm-start` to load any existing vector store before processing.
-- `warm_start_engine.py` loads TF-IDF vectors from `~/Soap/vector_store/` if present.
-- `rag_vectorizer.py` updates the vector store from SOPs in `~/Soap/overlay/sops/`.
+- **Watson** – parses raw task text into structured SOP format  
+- **Father** – validates logic and consistency  
+- **Mother** – performs safety, compliance, and regulation checks  
+- **Arbiter** – detects unresolved issues and flags conflicts  
+- **Soap** – generates the final human-readable SOP breakdown and notes  
 
-## Running codex_controller.py
+🌀 The processing pipeline:
+- Input tasks: `~/Soap/agent_queue/*.json`
+- Output SOPs: `~/Soap/overlay/sops/*.json`
 
-1. Place a JSON task file in `~/Soap/agent_queue/` with at least a `raw_text` field and set `status` to `queued`.
-2. Execute `python3 codex_controller.py` to process the queue once.
-3. Use `python3 codex_controller.py --loop` for continuous monitoring (default interval is 5 seconds).
-4. Completed SOPs will appear under `~/Soap/overlay/sops/`.
+Other components include:
+- Snapshot rotator
+- GCS cloud sync
+- Logging and state backup
+- Vectorized search indexing
 
+---
+
+## 🔁 Backup & Restore Utilities
+
+- `backup_now.py`  
+  Triggers `+FULL_SAVE_NOW+` to archive the current state.  
+  Optional:
+  - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)
+  - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
+
+- `restore_now.py`  
+  Triggers `+SPIN-UP+` to restore system state from GCS archive.  
+  Optional:
+  - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
+
+---
+
+## 🧩 Vector Store & RAG Components
+
+- `warm_start_engine.py`  
+  Loads TF-IDF vector store from `~/Soap/vector_store/` (if available).
+
+- `rag_vectorizer.py`  
+  Indexes all SOPs under `~/Soap/overlay/sops/` to update the vector store for hybrid search and retrieval.
+
+---
+
+## 🌀 SOP Processing Pipeline
+
+Run SOP tasks through all agents via
