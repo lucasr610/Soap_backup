@@ -14,3 +14,4 @@
 - [x] Replaced HTML frontend with React + Tailwind
 - [x] Finalized system delivery with full tooling and CI
 - [x] Removed large backup archive and cleaned up README cloud references
+- [x] Updated .gitignore for archive files and refined documentation

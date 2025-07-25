@@ -37,8 +37,8 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
-- `restore_now.py`  
-  Triggers `+SPIN-UP+` to restore system state from local snapshot. Optionally configure a GCS archive if needed.  
+- `restore_now.py`
+  Triggers `+SPIN-UP+` to restore system state from a local snapshot.
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
@@ -58,7 +58,7 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   Creates zip snapshots of the entire Soap directory and keeps the last five archives.
 
 - `upload_to_gcs.py`
-  Optional utility to upload a file to Google Cloud Storage.
+  Stub script for uploading a file to Google Cloud Storage. Not used in local development.
 
 ---
 
