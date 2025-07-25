@@ -1,2 +1,62 @@
-def run_arbiter(x):
-    return "[Arbiter resolves] " + str(x)
+# ~/ATI_ORACLE_ENGINE/agents/arbiter_phase.py
+#!/usr/bin/env python3
+"""Arbiter phase.
+
+Handles conflict resolution and finalizes SOP status.
+"""
+
+import json
+import logging
+from pathlib import Path
+
+HOME_DIR = Path.home()
+QUEUE_DIR = HOME_DIR / "Soap" / "agent_queue"
+LOG_DIR = HOME_DIR / "Soap" / "data" / "logs"
+LOG_FILE = LOG_DIR / "arbiter_phase.log"
+
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+logging.basicConfig(
+    filename=str(LOG_FILE),
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s'
+)
+logger = logging.getLogger()
+
+def log(message, level=logging.INFO):
+    print(message)
+    logger.log(level, message)
+
+def resolve_conflicts(sop: dict) -> bool:
+    conflicts = []
+    if sop.get("logic_issues"):
+        conflicts.extend(sop["logic_issues"])
+    if not sop.get("safety"):
+        conflicts.append("Missing safety procedures.")
+    if conflicts:
+        sop["conflict_fields"] = conflicts
+        return False
+    return True
+
+def run_arbiter():
+    tasks = sorted(QUEUE_DIR.glob("*.json"))
+    for task in tasks:
+        try:
+            data = json.loads(task.read_text())
+            status = data.get("status")
+            valid_status = {"father_complete", "mother_complete", "needs_human_review"}
+            if status not in valid_status:
+                continue
+            log(f"⚖️ Arbiter processing: {task.name}")
+            data["arbiter_backup"] = json.loads(json.dumps(data))
+            if resolve_conflicts(data):
+                data["status"] = "arbiter_complete"
+                log(f"✅ Arbiter: No conflicts for {task.name}")
+            else:
+                data["status"] = "arbiter_conflict"
+                log(f"⚠️ Arbiter: Conflicts found in {task.name}: {data.get('conflict_fields')}")
+            task.write_text(json.dumps(data, indent=2))
+        except Exception as e:
+            log(f"❌ Arbiter error on {task.name}: {e}", level=logging.ERROR)
+
+if __name__ == "__main__":
+    run_arbiter()
