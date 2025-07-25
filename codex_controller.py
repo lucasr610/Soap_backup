@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Master controller for the SOP pipeline.
 
-Scans ~/Soap/agent_queue for tasks and runs them through all five
-agents in sequence. Completed SOPs are exported to ~/Soap/overlay/sops/.
+Scans ``$SOAP_ROOT``/agent_queue (or ``~/Soap`` by default) for tasks and runs
+them through all five agents in sequence. Completed SOPs are exported to
+``$SOAP_ROOT``/overlay/sops/.
 """
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
@@ -16,6 +18,12 @@ from agents.arbiter_phase import run_arbiter
 from agents.soap_phase import run_soap
 from warm_start_engine import load_vectors, search_similar
 from rag_vectorizer import vectorize
+
+
+def get_soap_root() -> Path:
+    """Return the Soap root directory, honoring $SOAP_ROOT."""
+    env = os.getenv("SOAP_ROOT")
+    return Path(env).expanduser() if env else Path.home() / "Soap"
 
 
 def attach_related_sops(queue_dir: Path) -> None:
@@ -81,7 +89,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    root = Path.home() / "Soap"
+    root = get_soap_root()
     if args.warm_start:
         load_vectors()
     while True:
