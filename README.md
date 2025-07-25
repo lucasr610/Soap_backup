@@ -39,18 +39,26 @@ Other components include:
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
----
-
-## 🧩 Vector Store & RAG Components
+- `codex_controller.py`  
+  Main pipeline runner. Processes SOP tasks through all agents.  
+  Flags:
+  - `--loop`: monitors the queue continuously (default interval: 5 sec)
+  - `--warm-start`: loads existing vector store before running
 
 - `warm_start_engine.py`  
-  Loads TF-IDF vector store from `~/Soap/vector_store/` (if available).
+  Loads TF-IDF vectors from `~/Soap/vector_store/` if present.
 
 - `rag_vectorizer.py`  
-  Indexes all SOPs under `~/Soap/overlay/sops/` to update the vector store for hybrid search and retrieval.
+  Updates the vector store from SOPs in `~/Soap/overlay/sops/`.
 
 ---
 
-## 🌀 SOP Processing Pipeline
+## ✅ Running codex_controller.py
 
-Run SOP tasks through all agents via
+1. Place a JSON file in `~/Soap/agent_queue/` with at least a `raw_text` field and set `status` to `"queued"`:
+
+```json
+{
+  "raw_text": "Replace coolant filter as per maintenance schedule.",
+  "status": "queued"
+}

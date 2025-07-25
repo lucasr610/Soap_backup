@@ -27,6 +27,7 @@ def log(message, level=logging.INFO):
     logger.log(level, message)
 
 def validate_logic(sop: dict) -> list:
+    """Check SOP steps for clear action verbs and required fields."""
     issues = []
     if not sop.get("tools"):
         issues.append("Missing tool list.")

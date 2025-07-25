@@ -27,6 +27,7 @@ def log(message, level=logging.INFO):
     logger.log(level, message)
 
 def resolve_conflicts(sop: dict) -> bool:
+    """Check for logic_issues or missing safety and mark conflicts."""
     conflicts = []
     if sop.get("logic_issues"):
         conflicts.extend(sop["logic_issues"])

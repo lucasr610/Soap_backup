@@ -29,20 +29,25 @@ def log(message, level=logging.INFO):
     logger.log(level, message)
 
 def explain_sop(sop: dict):
+    """Build explanation and technical notes from SOP data."""
     breakdown = []
     tech_notes = []
+
     breakdown.append(f"📌 Purpose: {sop.get('purpose', '').strip()}")
     breakdown.append(f"📍 Scope: {sop.get('scope', '').strip()}")
+
     breakdown.append("🧰 Tools needed:")
     for tool in sop.get('tools', []):
         breakdown.append(f"  - {tool}")
     breakdown.append("📦 Materials needed:")
     for mat in sop.get('materials', []):
         breakdown.append(f"  - {mat}")
+
     if sop.get('safety'):
         breakdown.append("🛡️ Safety Notes:")
         for note in sop['safety']:
             breakdown.append(f"  ⚠️ {note}")
+
     breakdown.append("🛠️ Procedure Steps:")
     for i, step in enumerate(sop.get('procedure', []), 1):
         breakdown.append(f"  Step {i}: {step}")
@@ -53,6 +58,7 @@ def explain_sop(sop: dict):
             tech_notes.append(f"Step {i}: Fastening step - use torque wrench to manufacturer spec.")
         if 'grease' in text:
             tech_notes.append(f"Step {i}: Lubrication - apply correct grease sparingly.")
+
     return breakdown, tech_notes
 
 def run_soap():

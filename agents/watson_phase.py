@@ -27,6 +27,7 @@ def log(message, level=logging.INFO):
     logger.log(level, message)
 
 def structure_sop(raw_text: str) -> dict:
+    """Parse raw text into a structured SOP format."""
     lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
     return {
         "title": lines[0] if lines else "Untitled SOP",
