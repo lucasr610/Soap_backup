@@ -1,3 +1,0 @@
-- Verified agent hashes using agent_lock_checker
-- Ensured tests run successfully three times
-- Confirmed manual pipeline execution via test_big_manual (ran three times)
