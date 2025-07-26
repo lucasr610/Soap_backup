@@ -55,18 +55,30 @@ def process_queue(root: Path) -> None:
 
     attach_related_sops(queue_dir)
 
-    run_watson()
-    run_father()
-    run_mother()
-    run_arbiter()
-    run_soap()
-    vectorize()
+    for path in sorted(queue_dir.glob("*.json")):
+        try:
+            data = json.loads(path.read_text())
+        except Exception as exc:
+            logging.error("Invalid JSON %s: %s", path.name, exc)
+            continue
 
-    for path in queue_dir.glob("*.json"):
-        data = json.loads(path.read_text())
+        if data.get("status") == "queued":
+            data = run_watson(data)
+        if data.get("status") == "watson_complete":
+            data = run_father(data)
+        if data.get("status") == "father_complete":
+            data = run_mother(data)
+        if data.get("status") in {"father_complete", "mother_complete", "needs_human_review"}:
+            data = run_arbiter(data)
+        if data.get("status") == "arbiter_complete":
+            data = run_soap(data)
+
+        path.write_text(json.dumps(data, indent=2))
         if data.get("status") == "soap_complete":
             out = output_dir / path.name
             out.write_text(json.dumps(data, indent=2))
+
+    vectorize()
 
 
 def main() -> None:
