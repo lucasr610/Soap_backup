@@ -1,9 +1,23 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
+**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# SQLite database files
 *.sqlite3
 *.db
+
+# Environment variables
 .env
+
+# Log files
 *.log
-**/__pycache__/
+
+# ZIP archives
+*.zip
+
+# Vector store data
+vector_store/
+
