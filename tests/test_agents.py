@@ -30,7 +30,7 @@ def test_agent_pipeline(tmp_path, monkeypatch):
 
     soap_dir = home / "Soap"
     queue_dir = soap_dir / "agent_queue"
-    logs_dir = soap_dir / "data" / "logs"
+    logs_dir = soap_dir / "logs"
     queue_dir.mkdir(parents=True, exist_ok=True)
     logs_dir.mkdir(parents=True, exist_ok=True)
 
@@ -41,7 +41,9 @@ def test_agent_pipeline(tmp_path, monkeypatch):
     task_path = queue_dir / "task.json"
     task_path.write_text(json.dumps(task))
 
-    watson_phase.run_watson()
+    data = json.loads(task_path.read_text())
+    data = watson_phase.run_watson(data)
+    task_path.write_text(json.dumps(data))
 
     data = json.loads(task_path.read_text())
     data["tools"] = ["socket", "wrench"]
@@ -50,10 +52,11 @@ def test_agent_pipeline(tmp_path, monkeypatch):
     data["industry"] = "General"
     task_path.write_text(json.dumps(data))
 
-    father_phase.run_father()
-    mother_phase.run_mother()
-    arbiter_phase.run_arbiter()
-    soap_phase.run_soap()
+    data = father_phase.run_father(data)
+    data = mother_phase.run_mother(data)
+    data = arbiter_phase.run_arbiter(data)
+    data = soap_phase.run_soap(data)
+    task_path.write_text(json.dumps(data))
 
     result = json.loads(task_path.read_text())
     assert result["status"] == "soap_complete"

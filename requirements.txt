@@ -5,3 +5,5 @@ fastapi
 uvicorn
 httpx
 google-cloud-storage
+requests
+pytest
