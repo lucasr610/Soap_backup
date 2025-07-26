@@ -7,7 +7,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 </head>
-<body class="p-4">
+<body class="p-4 bg-gray-100 min-h-screen">
   <div id="root"></div>
   <script type="text/javascript">
     const e = React.createElement;
@@ -18,33 +18,60 @@
       const [text, setText] = React.useState('');
 
       const fetchTasks = async () => {
-        const resp = await fetch('/tasks');
-        const data = await resp.json();
-        setTasks(data.tasks);
+        try {
+          const resp = await fetch('/tasks');
+          const data = await resp.json();
+          setTasks(data.tasks);
+        } catch (err) {
+          console.error('Failed to fetch tasks:', err);
+        }
       };
 
       React.useEffect(() => { fetchTasks(); }, []);
 
       const submitTask = async () => {
-        await fetch('/submit', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ raw_text: text })
-        });
-        setText('');
-        fetchTasks();
-        setTab('queue');
+        if (!text.trim()) return;
+        try {
+          await fetch('/submit', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ raw_text: text })
+          });
+          setText('');
+          fetchTasks();
+          setTab('queue');
+        } catch (err) {
+          console.error('Failed to submit task:', err);
+        }
       };
 
-      return e('div', null,
+      return e('div', {className: 'max-w-xl mx-auto'},
+        e('h1', {className: 'text-2xl font-bold mb-4'}, 'ATI Oracle Task Manager'),
         e('div', {className: 'mb-4'},
-          e('button', {className: 'mr-2 px-3 py-1 bg-blue-500 text-white', onClick: () => setTab('queue')}, 'Queue'),
-          e('button', {className: 'px-3 py-1 bg-blue-500 text-white', onClick: () => setTab('submit')}, 'Submit')
+          e('button', {
+            className: `mr-2 px-4 py-2 rounded ${tab === 'queue' ? 'bg-blue-600' : 'bg-blue-400'} text-white`,
+            onClick: () => setTab('queue')
+          }, 'Queue'),
+          e('button', {
+            className: `px-4 py-2 rounded ${tab === 'submit' ? 'bg-green-600' : 'bg-green-400'} text-white`,
+            onClick: () => setTab('submit')
+          }, 'Submit')
         ),
-        tab === 'queue' && e('ul', {className:'list-disc ml-5'}, tasks.map(t=>e('li', {key:t.name}, `${t.name} - ${t.status}`))),
+        tab === 'queue' && e('ul', {className: 'list-disc pl-6'},
+          tasks.map((t, idx) =>
+            e('li', {key: idx}, `${t.name || '[Unnamed Task]'} - ${t.status}`)
+          )
+        ),
         tab === 'submit' && e('div', null,
-          e('textarea', {className:'w-full border', value:text, onChange:e=>setText(e.target.value)}),
-          e('button', {className:'mt-2 px-3 py-1 bg-green-500 text-white', onClick:submitTask}, 'Submit')
+          e('textarea', {
+            className: 'w-full border rounded p-2 h-28',
+            value: text,
+            onChange: e => setText(e.target.value)
+          }),
+          e('button', {
+            className: 'mt-3 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded',
+            onClick: submitTask
+          }, 'Submit Task')
         )
       );
     }
