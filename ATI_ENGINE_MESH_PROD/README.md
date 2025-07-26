@@ -1,37 +1,31 @@
-# ATI Engine Mesh Prod Utilities
+# ATI Engine Mesh Production
 
-This directory contains helper scripts for working with the production mesh.
+This directory holds configuration files and utility scripts for deploying and managing the ATI Engine Mesh in production environments.
 
-## `push_to_github.py`
+---
 
-Pushes the current repository to a GitHub remote. The script determines the
-repository URL and target branch from the following sources, in order:
+## 🔧 Environment Configuration
 
-1. Environment variables `REPO_URL` and `BRANCH_NAME`.
-2. A local `config.json` file located next to the script with keys
-   `"repo_url"` and `"branch"`.
-3. Interactive user input.
+The config loader reads the following environment variables:
 
-If the specified remote is not found in the current git configuration, the
-script prompts for a remote name and adds it before pushing. Errors are
-reported instead of raising uncaught exceptions.
+- `ATI_LLM_ENDPOINT` – URL of the large language model API  
+- `ATI_EMBEDDING_ENDPOINT` – URL of the embedding service API  
+- `ATI_API_KEY_PATH` – Filesystem path to the API key used by the services  
 
-### Example
+If these variables are not set, `config_loader.py` falls back to values defined in `configs/ai_config.json`.
 
-```bash
-export REPO_URL=https://github.com/myorg/myrepo.git
-export BRANCH_NAME=main
-python push_to_github.py
-```
+---
 
-Alternatively create a `config.json` file:
+## 🚀 `push_to_github.py`
 
-```json
-{
-  "repo_url": "https://github.com/myorg/myrepo.git",
-  "branch": "main"
-}
-```
+This script pushes the current repository to a GitHub remote. It determines the repository URL and target branch from the following sources, in order:
 
-Running the script without environment variables will then use these values.
-
+1. Environment variables:  
+   - `REPO_URL`  
+   - `BRANCH_NAME`
+2. A `config.json` file located next to the script:
+   ```json
+   {
+     "repo_url": "https://github.com/myorg/myrepo.git",
+     "branch": "main"
+   }
