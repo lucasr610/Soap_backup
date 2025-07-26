@@ -73,3 +73,33 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
+
+## 📦 Installation
+
+1. Install Python 3.11 or later.
+2. Install required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
+
+### Running with Docker
+
+1. Build the image:
+   ```bash
+   docker build -t oracle-engine .
+   ```
+2. Start the server:
+   ```bash
+   docker run -p 8000:8000 oracle-engine
+   ```
+
+### Using the Makefile
+
+Common tasks are wrapped in the Makefile:
+
+- `make install` – install Python dependencies
+- `make test` – run the test suite
+- `make run` – start the development server
