@@ -85,3 +85,32 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
 Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
+
+## 🔌 Mesh Interaction and Restore Workflow
+
+When the system is restored from a snapshot, all agents in `Soap/system_agents/` reconnect and resume processing as a local mesh. `motherboard_orchestrator.py` restarts each rotor in sequence while `watcher_agent.py` monitors their heartbeat logs. If a rotor stalls, `healer_agent.py` reloads the most recent snapshot so tasks continue flowing through the pipeline. Restoring the `~/Soap` directory therefore brings the entire mesh back online with its previous queue and logs intact.
+
+### Spin-Up
+
+Restore a saved snapshot to your Soap directory and relaunch the rotors:
+
+```bash
+python trigger_spin_up.py
+```
+
+### Spin-Down
+
+Create a snapshot of the current Soap state and gracefully halt the rotors:
+
+```bash
+python trigger_spin_down.py
+```
+
+### Restore from Backup
+
+Pull the latest archived snapshot from cloud storage and trigger a spin-up:
+
+```bash
+python restore_now.py
+```
+
