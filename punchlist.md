@@ -16,7 +16,7 @@
 - [x] Added GitHub Actions CI workflow (`.github/workflows/test.yml`)
 - [x] Fixed `Makefile` tab indentation for `test` target
 - [x] Documented `Makefile` workflow in `README.md` and reconfirmed tests
-- [x] Removed large backup archive and cleaned up cloud-specific README lines
+- [x] Removed backup ZIP archive and cleaned up cloud-specific README lines
 - [x] Verified remote connection and test run after final environment setup
 - [x] Cleaned up repository and confirmed all tests passed
 - [x] Finalized system delivery with full tooling, CI, and snapshot utilities
