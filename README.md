@@ -19,9 +19,9 @@ This platform uses a chain of **five protected agents** to handle SOP synthesis:
 - Output SOPs: `~/Soap/overlay/sops/*.json`
 
 Other components include:
-- Snapshot rotator
-- Logging and state backup
-- Vectorized search indexing
+- Snapshot rotator  
+- Logging and state backup  
+- Vectorized search indexing  
 
 ---
 
@@ -36,7 +36,7 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 - `backup_now.py`  
   Triggers `+FULL_SAVE_NOW+` to archive the current state.  
   Optional:
-  - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)
+  - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)  
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
 - `restore_now.py`  
@@ -73,9 +73,3 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
-
-```
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
