@@ -4,7 +4,8 @@ from pathlib import Path
 import json
 import time
 
-from codex_controller import process_queue, get_soap_root
+from codex_controller import process_queue
+from Soap.utils import get_soap_root
 
 app = FastAPI(title="ATI Oracle Backend")
 

@@ -6,13 +6,13 @@ import os
 from pathlib import Path
 from typing import List
 
+from Soap.utils import get_soap_root
+
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-HOME_DIR = Path.home()
-SOAP_ROOT_ENV = os.getenv("SOAP_ROOT")
-SOAP_ROOT = Path(SOAP_ROOT_ENV).expanduser() if SOAP_ROOT_ENV else HOME_DIR / "Soap"
+SOAP_ROOT = get_soap_root()
 
 VECTOR_DIR = SOAP_ROOT / "vector_store"
 SOPS_DIR = SOAP_ROOT / "overlay" / "sops"
