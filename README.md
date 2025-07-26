@@ -73,3 +73,9 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
+
+```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
