@@ -3,8 +3,9 @@
 import hashlib
 import json
 import logging
-import os
 from pathlib import Path
+
+from Soap.utils import get_soap_root
 
 AGENTS = [
     "watson_phase.py",
@@ -13,11 +14,6 @@ AGENTS = [
     "arbiter_phase.py",
     "soap_phase.py",
 ]
-
-
-def get_soap_root() -> Path:
-    env = os.getenv("SOAP_ROOT")
-    return Path(env).expanduser() if env else Path.home() / "Soap"
 
 
 def load_reference(root: Path) -> dict:
