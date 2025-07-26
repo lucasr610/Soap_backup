@@ -9,7 +9,7 @@
 - [x] Ran `codex_controller` end-to-end with sample tasks
 - [x] Added `.gitignore` to avoid committing cache and archive files
 - [x] Added `httpx` requirement to fix test import error
-- [x] Added `Dockerfile` and `Makefile` for streamlined setup and dev workflow
+- [x] Added `Dockerfile` and `Makefile` for streamlined setup and development workflow
 - [x] Documented Docker and Makefile usage in `README.md`
 - [x] Created `system_snapshot.py` and `upload_to_gcs.py` utilities
 - [x] Stubbed `upload_to_gcs.py` to avoid network operations in local mode
@@ -19,4 +19,5 @@
 - [x] Removed backup ZIP archive and cleaned up cloud-specific README lines
 - [x] Verified remote connection and test run after final environment setup
 - [x] Cleaned up repository and confirmed all tests passed
+- [x] Re-ran full test suite, agent hash verification, and manual tests
 - [x] Finalized system delivery with full tooling, CI, and snapshot utilities
