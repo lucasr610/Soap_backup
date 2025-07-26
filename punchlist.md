@@ -8,3 +8,4 @@
 
 - [x] Ran codex_controller end-to-end with sample tasks
 - [x] Added .gitignore to avoid committing cache files
+- [x] Added httpx dependency to requirements
