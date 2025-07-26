@@ -11,11 +11,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-
-def get_soap_root() -> Path:
-    """Return the Soap root directory."""
-    env_path = os.getenv("SOAP_ROOT")
-    return Path(env_path).expanduser() if env_path else Path.home() / "Soap"
+from Soap.utils import get_soap_root
 
 
 def setup_logger() -> logging.Logger:
