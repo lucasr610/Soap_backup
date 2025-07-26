@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_attention.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_attention.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,9 +19,9 @@ def log(msg):
 def main():
     print("🧠 [+ATTENTION+] SYSTEM IS WAKING UP...")
     log("Attention trigger fired.")
-    subprocess.run("python3 ~/Soap/attention.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/attention.py", shell=True)
     print("🔁 Handing off to ROTOR_FUSION...")
-    subprocess.run("python3 ~/Soap/rotor_fusion.py +CODE-RED+", shell=True)
+    subprocess.run(f"python3 {ROOT}/rotor_fusion.py +CODE-RED+", shell=True)
 
 
 if __name__ == "__main__":
