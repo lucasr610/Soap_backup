@@ -20,9 +20,14 @@ This platform uses a chain of **five protected agents** to handle SOP synthesis:
 
 Other components include:
 - Snapshot rotator
-- GCS cloud sync
 - Logging and state backup
 - Vectorized search indexing
+
+---
+
+## 🖥️ Frontend
+
+The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs to submit new tasks and view the current queue. The frontend is served directly by the FastAPI backend at the root URL.
 
 ---
 
@@ -35,14 +40,14 @@ Other components include:
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
 - `restore_now.py`  
-  Triggers `+SPIN-UP+` to restore system state from GCS archive.  
+  Triggers `+SPIN-UP+` to restore system state from a local snapshot.  
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
 - `codex_controller.py`  
   Main pipeline runner. Processes SOP tasks through all agents.  
   Flags:
-  - `--loop`: monitors the queue continuously (default interval: 5 sec)
+  - `--loop`: monitors the queue continuously (default interval: 5 sec)  
   - `--warm-start`: loads existing vector store before running
 
 - `warm_start_engine.py`  
@@ -51,9 +56,15 @@ Other components include:
 - `rag_vectorizer.py`  
   Updates the vector store from SOPs in `~/Soap/overlay/sops/`.
 
+- `system_snapshot.py`  
+  Creates zip snapshots of the entire Soap directory and keeps the last five archives.
+
+- `upload_to_gcs.py`  
+  Stub script for uploading a file to Google Cloud Storage. Not used in local development.
+
 ---
 
-## ✅ Running codex_controller.py
+## ✅ Running `codex_controller.py`
 
 1. Place a JSON file in `~/Soap/agent_queue/` with at least a `raw_text` field and set `status` to `"queued"`:
 
@@ -62,14 +73,3 @@ Other components include:
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
-
-## 📦 Installation
-
-1. Install Python 3.11 or later.
-2. Install required packages:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
