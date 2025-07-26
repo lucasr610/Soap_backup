@@ -7,12 +7,14 @@ import json
 import logging
 from pathlib import Path
 
+from Soap.utils import get_soap_root
+
 # Configuration
-HOME_DIR = Path.home()
-QUEUE_DIR = HOME_DIR / "Soap" / "agent_queue"
-LOG_DIR = HOME_DIR / "Soap" / "data" / "logs"
+ROOT = get_soap_root()
+QUEUE_DIR = ROOT / "agent_queue"
+LOG_DIR = ROOT / "data" / "logs"
 LOG_FILE = LOG_DIR / "mother_phase.log"
-RULES_FILE = HOME_DIR / "Soap" / "overlay" / "regulatory_rules.json"
+RULES_FILE = ROOT / "overlay" / "regulatory_rules.json"
 
 # Default safety rules
 PPE_DEFAULTS = [

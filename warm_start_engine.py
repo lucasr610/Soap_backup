@@ -5,13 +5,13 @@ import logging
 import os
 from pathlib import Path
 
+from Soap.utils import get_soap_root
+
 import joblib
 from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
 
-HOME_DIR = Path.home()
-SOAP_ROOT_ENV = os.getenv("SOAP_ROOT")
-SOAP_ROOT = Path(SOAP_ROOT_ENV).expanduser() if SOAP_ROOT_ENV else HOME_DIR / "Soap"
+SOAP_ROOT = get_soap_root()
 ROOT = SOAP_ROOT
 VECTOR_DIR = ROOT / "vector_store"
 LOG_FILE = ROOT / "data" / "logs" / "warm_start_engine.log"
