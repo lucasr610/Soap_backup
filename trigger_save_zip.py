@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_save_zip.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_save_zip.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("📦 [+SAVE-ZIP+] Zipping Soap directory locally...")
     log("Save-zip trigger fired")
-    subprocess.run("python3 ~/Soap/save_zip.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/save_zip.py", shell=True)
     log("Save-zip complete")
 
 

@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_rebuild_all.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_rebuild_all.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("🔨 [+REBUILD-ALL+] Restoring protected files from registry...")
     log("Rebuild-all trigger fired")
-    subprocess.run("python3 ~/Soap/rebuild_all.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/rebuild_all.py", shell=True)
     log("Rebuild-all complete")
 
 

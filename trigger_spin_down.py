@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_spin_down.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_spin_down.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -19,7 +22,7 @@ def main():
         "rotors..."
     )
     log("Spin-Down initiated from trigger.")
-    subprocess.run("python3 ~/Soap/spin_down.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/spin_down.py", shell=True)
     print("💤 [SPIN-DOWN] Rotor engine is offline.")
     log("Spin-Down complete.")
 

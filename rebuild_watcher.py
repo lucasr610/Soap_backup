@@ -4,8 +4,11 @@ import time
 from pathlib import Path
 import subprocess
 
-FLAG = Path.home() / "Soap/.trigger.rebuild"
-TRIGGER = Path.home() / "Soap/restore_now.py"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+FLAG = ROOT / ".trigger.rebuild"
+TRIGGER = ROOT / "restore_now.py"
 
 
 def main() -> None:
