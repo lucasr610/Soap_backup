@@ -9,9 +9,11 @@ import json
 import logging
 from pathlib import Path
 
-HOME_DIR = Path.home()
-QUEUE_DIR = HOME_DIR / "Soap" / "agent_queue"
-LOG_DIR = HOME_DIR / "Soap" / "data" / "logs"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+QUEUE_DIR = ROOT / "agent_queue"
+LOG_DIR = ROOT / "data" / "logs"
 LOG_FILE = LOG_DIR / "father_phase.log"
 
 LOG_DIR.mkdir(parents=True, exist_ok=True)
