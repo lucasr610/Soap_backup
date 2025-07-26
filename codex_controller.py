@@ -7,7 +7,6 @@ them through all five agents in sequence. Completed SOPs are exported to
 """
 import argparse
 import json
-import os
 import time
 from pathlib import Path
 
@@ -19,11 +18,7 @@ from agents.soap_phase import run_soap
 from warm_start_engine import load_vectors, search_similar
 from rag_vectorizer import vectorize
 
-
-def get_soap_root() -> Path:
-    """Return the Soap root directory, honoring $SOAP_ROOT."""
-    env = os.getenv("SOAP_ROOT")
-    return Path(env).expanduser() if env else Path.home() / "Soap"
+from Soap.utils import get_soap_root
 
 
 def attach_related_sops(queue_dir: Path) -> None:

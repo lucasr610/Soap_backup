@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_boot.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_boot.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("🚀 [+BOOT+] Starting full start sequence...")
     log("BOOT trigger fired")
-    root = Path.home() / "Soap/triggers"
+    root = ROOT / "triggers"
     for trig in ["+ATTENTION+", "+CODE-RED+", "+SPIN-UP+"]:
         subprocess.run(["bash", str(root / trig)], check=False)
     log("BOOT sequence completed")
