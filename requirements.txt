@@ -1,3 +1,7 @@
 joblib
 scikit-learn
 scipy
+fastapi
+uvicorn
+httpx
+google-cloud-storage
