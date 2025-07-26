@@ -81,6 +81,14 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
    pip install -r requirements.txt
 ```
 
+You can also use the `Makefile` helpers for a consistent workflow:
+
+```bash
+make install   # install dependencies
+make test      # run the unit tests
+make run       # start the backend server
+```
+
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
 Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.

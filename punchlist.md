@@ -20,3 +20,4 @@
 - [x] Cleaned up repository and confirmed final tests
 - [x] Stubbed upload_to_gcs script to avoid network operations
 - [x] Confirmed remote connection and test run after environment setup
+- [x] Documented Makefile workflow in README and reconfirmed tests
