@@ -8,7 +8,9 @@ from pathlib import Path
 import json
 from datetime import datetime
 
-ROOT = Path.home() / "Soap"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
 SNAPSHOT_AGENTS = ["watson", "father", "arbiter", "soap", "streamkeeper", "healer"]
 LOG_PATH = ROOT / "logs" / "codex_init.log"
 MANIFEST_PATH = ROOT / "overlay" / "manifest.json"

@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_spin_reset.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_spin_reset.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("♻️ [+SPIN-RESET+] Purging temp files and caches...")
     log("Spin-reset trigger fired")
-    subprocess.run("python3 ~/Soap/spin_reset.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/spin_reset.py", shell=True)
     log("Spin-reset complete")
 
 

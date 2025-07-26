@@ -1,10 +1,32 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
+**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# SQLite database files
 *.sqlite3
 *.db
+
+# Environment variables
 .env
+
+# Log files
 *.log
-**/__pycache__/
+logs/
+*/logs/
+
+# ZIP archives
+*.zip
+ATI_RotorFusion_FullBackup.zip
+backup/*.zip
+
+# Vector store data
 vector_store/
+
+# Virtual environment
+.venv/
+
+# Binary files
+*.bin
