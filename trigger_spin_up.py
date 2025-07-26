@@ -19,7 +19,15 @@ def log(msg: str) -> None:
 def main() -> None:
     print("🔄 [+SPIN-UP+] Restoring from cloud and relaunching rotors...")
     log("Spin-Up trigger fired")
-    subprocess.run(f"python3 {ROOT}/spin_up.py", shell=True)
+
+    boot_script = Path.home() / "Soap/install_and_boot.sh"
+
+    if boot_script.exists():
+        subprocess.run(["bash", str(boot_script)], check=False)
+    else:
+        fallback = ROOT / "spin_up.py"
+        subprocess.run(f"python3 {fallback}", shell=True)
+
     log("Spin-Up complete")
 
 
