@@ -1,12 +1,7 @@
-import os
 from pathlib import Path
 
 from core.snapshot_rotator import rotate_snapshots
-
-
-def get_soap_root() -> Path:
-    env = os.getenv("SOAP_ROOT")
-    return Path(env).expanduser() if env else Path.home() / "Soap"
+from Soap.utils import get_soap_root
 
 
 def create_snapshot(dst: Path | None = None) -> Path:

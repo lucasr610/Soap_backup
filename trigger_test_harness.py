@@ -3,6 +3,8 @@
 import subprocess
 from pathlib import Path
 
+from Soap.utils import get_soap_root
+
 TRIGGERS = [
     "+ATTENTION+",
     "+CODE-RED+",
@@ -13,7 +15,7 @@ TRIGGERS = [
 
 
 def main() -> None:
-    root = Path.home() / "Soap/triggers"
+    root = get_soap_root() / "triggers"
     for trig in TRIGGERS:
         path = root / trig
         print(f"⚡ Running {trig} ...")
