@@ -1,8 +1,9 @@
+fastapi
+google-cloud-storage
+httpx
 joblib
+pytest
+requests
 scikit-learn
 scipy
-fastapi
 uvicorn
-httpx
-google-cloud-storage
-pytest
