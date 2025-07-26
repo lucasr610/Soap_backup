@@ -31,15 +31,11 @@ find . -maxdepth 2 -type d -name ".git" | sed 's|/\.git||' | while read -r repo;
   git fetch --all
   git checkout main
   branches=$(git for-each-ref --format='%(refname:short)' refs/heads/ | grep -v '^main$')
-  if [[ -n "$branches" ]]; then
-    echo "Merging branches: $branches"
-    git merge --no-ff $branches -m "Automated merge of all branches into main"
-    echo "Deleting merged branches"
-    git branch -d $branches
-    git push origin --delete $branches || true
-  else
-    echo "No other branches to merge"
-  fi
+  for br in $branches; do
+    echo "Merging branch: $br"
+    git merge --no-ff "$br" -m "Automated merge of $br into main" || true
+    git branch -d "$br" && git push origin --delete "$br" || true
+  done
   echo "Pushing updated main to origin"
   git push origin main
   cd - > /dev/null
@@ -51,11 +47,12 @@ OUTPUT_FILE="docs/codex_master_tasks.md"
 if [[ -d "$TASK_DIR" ]]; then
   echo "Combining Codex tasks from $TASK_DIR into $OUTPUT_FILE"
   mkdir -p "$(dirname "$OUTPUT_FILE")"
-  cat "$TASK_DIR"/*.md > "$OUTPUT_FILE"
+  cat "$TASK_DIR"/*.md | awk '!seen[$0]++' > "$OUTPUT_FILE"
   cd $(git rev-parse --show-toplevel)
-  git add "$OUTPUT_FILE"
-  git commit -m "Combine all Codex tasks into master document"
-  git push origin main
+  if ! git diff --quiet "$OUTPUT_FILE"; then
+    git add "$OUTPUT_FILE"
+    git commit -m "Combine all Codex tasks into master document" && git push origin main
+  fi
 else
   echo "No $TASK_DIR directory found – skipping Codex task merge"
 fi
