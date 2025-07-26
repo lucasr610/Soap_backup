@@ -1,5 +1,5 @@
 # System Status
 
 - **Phase**: Final delivery
-- **Timestamp**: Fri Jul 25 22:39:55 UTC 2025
-- **Summary**: Completed full system with backend, frontend, agents, dev tooling, and CI pipeline.
+- **Timestamp**: Sat Jul 26 00:02:56 UTC 2025
+- **Summary**: Removed backup zip, restored stub GCS uploader, and added Makefile usage instructions to README. All tests re-verified successfully.
