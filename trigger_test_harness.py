@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
-"""Run all triggers in sequence for testing."""
+"""Run all triggers in sequence for testing and import pipeline agents."""
 import subprocess
 from pathlib import Path
+
+from ATI_ENGINE_MESH_PROD.agents.watson_phase import run_watson
+from ATI_ENGINE_MESH_PROD.agents.father_phase import run_father
+from ATI_ENGINE_MESH_PROD.agents.safety_officer_phase import run_mother
+from ATI_ENGINE_MESH_PROD.agents.arbiter_phase import run_arbiter
+from ATI_ENGINE_MESH_PROD.agents.soap_phase import run_soap
 
 TRIGGERS = [
     "+ATTENTION+",
