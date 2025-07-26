@@ -47,6 +47,10 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   Flags:
   - `--loop`: monitors the queue continuously (default interval: 5 sec)
   - `--warm-start`: loads existing vector store before running
+- `ATI_ENGINE_MESH_PROD/run_all_phases.py`
+  CLI runner to execute one phase or the full pipeline. Use `--phase` to select.
+- `install_and_boot.sh`
+  Installs requirements and launches the pipeline.
 
 - `warm_start_engine.py`  
   Loads TF-IDF vectors from `~/Soap/vector_store/` if present.
@@ -88,6 +92,7 @@ make install   # install dependencies
 make test      # run the unit tests
 make run       # start the backend server
 ```
+Or run `./install_and_boot.sh` to install dependencies and start the pipeline.
 
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
