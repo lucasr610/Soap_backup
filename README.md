@@ -23,6 +23,14 @@ Other components include:
 - Logging and state backup
 - Vectorized search indexing
 
+## Installation
+
+Install Python dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
 ---
 
 ## 🖥️ Frontend
