@@ -1,9 +1,22 @@
 ## ✅ Punch List – Codex System Final
 
-- [x] Verified agent hashes using agent_lock_checker
+- [x] Verified agent hashes using `agent_lock_checker`
 - [x] Ensured tests run successfully three times
-- [x] Confirmed manual pipeline execution via test_big_manual
-- [x] Added requirements.txt with runtime dependencies
-- [x] Updated codex_controller to honor $SOAP_ROOT
-- [x] Ran codex_controller end-to-end with sample tasks
-- [x] Added .gitignore to avoid committing cache files
+- [x] Confirmed manual pipeline execution via `test_big_manual` (ran three times)
+- [x] Added `requirements.txt` with runtime dependencies
+- [x] Updated `codex_controller.py` to honor `$SOAP_ROOT`
+- [x] Validated `codex_controller` processes tasks using `$SOAP_ROOT` override
+- [x] Ran `codex_controller` end-to-end with sample tasks
+- [x] Added `.gitignore` to avoid committing cache and archive files
+- [x] Added `httpx` requirement to fix test import error
+- [x] Added `Dockerfile` and `Makefile` for development workflow
+- [x] Created `system_snapshot.py` and `upload_to_gcs.py` utilities
+- [x] Stubbed `upload_to_gcs.py` to avoid network operations in local mode
+- [x] Replaced legacy HTML frontend with React + Tailwind version
+- [x] Added GitHub Actions CI workflow (`.github/workflows/test.yml`)
+- [x] Fixed `Makefile` tab indentation for `test` target
+- [x] Documented `Makefile` workflow in `README.md` and reconfirmed tests
+- [x] Removed large backup archive and cleaned up cloud-specific README lines
+- [x] Verified remote connection and test run after final environment setup
+- [x] Cleaned up repository and confirmed all tests passed
+- [x] Finalized system delivery with full tooling, CI, and snapshot utilities
