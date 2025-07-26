@@ -23,6 +23,22 @@ Other components include:
 - Logging and state backup
 - Vectorized search indexing
 
+## Installation
+
+Create and activate a Python virtual environment, then install dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Verify the environment by running the tests:
+
+```bash
+pytest -q
+```
+
 ---
 
 ## 🖥️ Frontend
