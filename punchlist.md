@@ -9,13 +9,13 @@
 - [x] Ran `codex_controller` end-to-end with sample tasks
 - [x] Added `.gitignore` to avoid committing cache and archive files
 - [x] Added `httpx` requirement to fix test import error
-- [x] Added `Dockerfile` and `Makefile` for development workflow
+- [x] Added `Dockerfile` and `Makefile` for streamlined setup and dev workflow
+- [x] Documented Docker and Makefile usage in `README.md`
 - [x] Created `system_snapshot.py` and `upload_to_gcs.py` utilities
 - [x] Stubbed `upload_to_gcs.py` to avoid network operations in local mode
 - [x] Replaced legacy HTML frontend with React + Tailwind version
 - [x] Added GitHub Actions CI workflow (`.github/workflows/test.yml`)
 - [x] Fixed `Makefile` tab indentation for `test` target
-- [x] Documented `Makefile` workflow in `README.md` and reconfirmed tests
 - [x] Removed backup ZIP archive and cleaned up cloud-specific README lines
 - [x] Verified remote connection and test run after final environment setup
 - [x] Cleaned up repository and confirmed all tests passed

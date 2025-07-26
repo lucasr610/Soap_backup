@@ -34,7 +34,7 @@
         try {
           await fetch('/submit', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ raw_text: text })
           });
           setText('');
@@ -45,9 +45,9 @@
         }
       };
 
-      return e('div', {className: 'max-w-xl mx-auto'},
-        e('h1', {className: 'text-2xl font-bold mb-4'}, 'ATI Oracle Task Manager'),
-        e('div', {className: 'mb-4'},
+      return e('div', { className: 'max-w-xl mx-auto' },
+        e('h1', { className: 'text-2xl font-bold mb-4' }, 'ATI Oracle Task Manager'),
+        e('div', { className: 'mb-4' },
           e('button', {
             className: `mr-2 px-4 py-2 rounded ${tab === 'queue' ? 'bg-blue-600' : 'bg-blue-400'} text-white`,
             onClick: () => setTab('queue')
@@ -57,9 +57,9 @@
             onClick: () => setTab('submit')
           }, 'Submit')
         ),
-        tab === 'queue' && e('ul', {className: 'list-disc pl-6'},
+        tab === 'queue' && e('ul', { className: 'list-disc pl-6' },
           tasks.map((t, idx) =>
-            e('li', {key: idx}, `${t.name || '[Unnamed Task]'} - ${t.status}`)
+            e('li', { key: idx }, `${t.name || '[Unnamed Task]'} - ${t.status}`)
           )
         ),
         tab === 'submit' && e('div', null,
