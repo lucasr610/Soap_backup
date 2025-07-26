@@ -23,6 +23,23 @@ Other components include:
 - Logging and state backup
 - Vectorized search indexing
 
+## Installation
+
+Create and activate a Python virtual environment, then install dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+The `requirements.txt` file lists packages such as `joblib`, `scikit-learn`, `scipy`, `fastapi`, `uvicorn`, `httpx`, `google-cloud-storage`, `requests`, and `pytest`.
+
+Verify the environment by running the tests:
+
+```bash
+pytest -q
+```
+
 ---
 
 ## 🖥️ Frontend
@@ -73,3 +90,18 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
+```
+
+2. Start the full pipeline and verify system health:
+
+```bash
+bash trigger_spin_up.sh && python scripts/trigger_test_harness.py
+```
+
+### Repository Tools
+
+Use `triggers/+GOD-MODE+` to validate the repository layout:
+
+```bash
+bash triggers/+GOD-MODE+ --enforce
+```
