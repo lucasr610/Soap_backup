@@ -58,6 +58,16 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 
 - `system_snapshot.py`  
   Creates zip snapshots of the entire Soap directory and keeps the last five archives.
+- `spin_down.py`
+  Compresses the Soap directory into a timestamped zip archive.
+- `spin_up.py`
+  Extracts a snapshot archive back into the Soap directory.
+- `full_save.py`
+  Wrapper around `system_snapshot.py` for scheduled backups.
+- `full_save_now.py`
+  Immediately creates a snapshot like `full_save.py`.
+- `save_zip.py`
+  Generates a single archive in `~/Soap/snapshots/`.
 
 - `upload_to_gcs.py`  
   Stub script for uploading a file to Google Cloud Storage. Not used in local development.
