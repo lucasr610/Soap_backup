@@ -1,4 +1,5 @@
 __pycache__/
+**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
@@ -6,6 +7,9 @@ __pycache__/
 *.db
 .env
 *.log
-**/__pycache__/
+logs/
+*/logs/
 vector_store/
+.venv/
 *.zip
+*.bin
