@@ -14,10 +14,20 @@ __pycache__/
 
 # Log files
 *.log
+logs/
+*/logs/
 
 # ZIP archives
 *.zip
+ATI_RotorFusion_FullBackup.zip
+backup/*.zip
 
 # Vector store data
 vector_store/
+
+# Virtual environment
 .venv/
+
+# Binary files
+*.bin
+

@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_full_save.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_full_save.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("💾 [+FULL-SAVE+] Zipping and uploading Soap...")
     log("Full save trigger fired")
-    subprocess.run("python3 ~/Soap/full_save.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/full_save.py", shell=True)
     log("Full save complete")
 
 

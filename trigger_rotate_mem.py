@@ -4,7 +4,10 @@ import subprocess
 from pathlib import Path
 import time
 
-LOG_PATH = Path.home() / "Soap/logs/trigger_rotate_mem.log"
+from Soap.utils import get_soap_root
+
+ROOT = get_soap_root()
+LOG_PATH = ROOT / "logs/trigger_rotate_mem.log"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -16,7 +19,7 @@ def log(msg: str) -> None:
 def main() -> None:
     print("🔁 [+ROTATE-MEM+] Playing zip logs...")
     log("Rotate-mem trigger fired")
-    subprocess.run("python3 ~/Soap/rotate_mem.py", shell=True)
+    subprocess.run(f"python3 {ROOT}/rotate_mem.py", shell=True)
     log("Rotate-mem complete")
 
 
