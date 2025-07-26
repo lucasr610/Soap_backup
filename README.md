@@ -19,9 +19,11 @@ This platform uses a chain of **five protected agents** to handle SOP synthesis:
 - Output SOPs: `~/Soap/overlay/sops/*.json`
 
 Other components include:
-- Snapshot rotator
-- Logging and state backup
-- Vectorized search indexing
+- Snapshot rotator  
+- Logging and state backup  
+- Vectorized search indexing  
+
+---
 
 ## 🖥️ Frontend
 
@@ -34,35 +36,35 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 - `backup_now.py`  
   Triggers `+FULL_SAVE_NOW+` to archive the current state.  
   Optional:
-  - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)
+  - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)  
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
-- `restore_now.py`
-  Triggers `+SPIN-UP+` to restore system state from a local snapshot.
+- `restore_now.py`  
+  Triggers `+SPIN-UP+` to restore system state from a local snapshot.  
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
 - `codex_controller.py`  
   Main pipeline runner. Processes SOP tasks through all agents.  
   Flags:
-  - `--loop`: monitors the queue continuously (default interval: 5 sec)
+  - `--loop`: monitors the queue continuously (default interval: 5 sec)  
   - `--warm-start`: loads existing vector store before running
 
 - `warm_start_engine.py`  
   Loads TF-IDF vectors from `~/Soap/vector_store/` if present.
 
-- `rag_vectorizer.py`
+- `rag_vectorizer.py`  
   Updates the vector store from SOPs in `~/Soap/overlay/sops/`.
 
-- `system_snapshot.py`
+- `system_snapshot.py`  
   Creates zip snapshots of the entire Soap directory and keeps the last five archives.
 
-- `upload_to_gcs.py`
+- `upload_to_gcs.py`  
   Stub script for uploading a file to Google Cloud Storage. Not used in local development.
 
 ---
 
-## ✅ Running codex_controller.py
+## ✅ Running `codex_controller.py`
 
 1. Place a JSON file in `~/Soap/agent_queue/` with at least a `raw_text` field and set `status` to `"queued"`:
 
@@ -71,56 +73,3 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   "raw_text": "Replace coolant filter as per maintenance schedule.",
   "status": "queued"
 }
-
-## 📦 Installation
-
-1. Install Python 3.11 or later.
-2. Install `gsutil` from the Google Cloud SDK if you need to download
-   backups from Google Cloud Storage.
-3. Install required packages:
-
-```bash
-   pip install -r requirements.txt
-```
-
-You can also use the `Makefile` helpers for a consistent workflow:
-
-```bash
-make install   # install dependencies
-make test      # run the unit tests
-make run       # start the backend server
-```
-
-Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
-
-Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
-
-## 💃 Restoring ATI Engine Backup
-
-Use `restore_ati.sh` to download the latest snapshot from your Google
-Cloud bucket and restore it locally.
-
-1. Ensure `gsutil` is authenticated (`gcloud auth login`).
-2. Run the script from the repository root:
-
-   ```bash
-   bash restore_ati.sh
-   ```
-
-   The script copies the archive from GCS and invokes `restore_now.py`
-   to unpack it under `$SOAP_ROOT`.
-3. Start the engine with `make run` or by running `codex_controller.py`.
-
-## 🔀 Switching Engines
-
-All utilities operate on the directory defined by `$SOAP_ROOT`. Set this
-variable to select either the legacy Soap engine or the production
-`ATI_ENGINE_MESH_PROD` directory:
-
-```bash
-export SOAP_ROOT=~/Soap                 # legacy system
-export SOAP_ROOT=~/ATI_ENGINE_MESH_PROD # production engine
-```
-
-After changing `SOAP_ROOT`, rerun any helper scripts or the controller
-to work with that engine.
