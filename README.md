@@ -85,3 +85,10 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
 Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
+
+- `push_to_github.py`
+  Commit and push a local Git repository. The script accepts parameters via
+  command-line flags or environment variables:
+  - `--repo-url` / `REPO_URL` – remote repository URL
+  - `--commit-message` / `COMMIT_MSG` – commit message (default "Auto commit")
+  - `--path` / `REPO_PATH` – path to repository (default current directory)
