@@ -16,7 +16,8 @@ def log(msg: str) -> None:
 def main() -> None:
     print("🔄 [+SPIN-UP+] Restoring from cloud and relaunching rotors...")
     log("Spin-Up trigger fired")
-    subprocess.run("python3 ~/Soap/spin_up.py", shell=True)
+    script = Path.home() / "Soap/install_and_boot.sh"
+    subprocess.run(["bash", str(script)], check=False)
     log("Spin-Up complete")
 
 
