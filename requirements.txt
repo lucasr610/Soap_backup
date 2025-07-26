@@ -1,0 +1,7 @@
+joblib
+scikit-learn
+scipy
+fastapi
+uvicorn
+
+httpx
