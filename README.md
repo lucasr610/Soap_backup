@@ -75,7 +75,9 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 ## 📦 Installation
 
 1. Install Python 3.11 or later.
-2. Install required packages:
+2. Install `gsutil` from the Google Cloud SDK if you need to download
+   backups from Google Cloud Storage.
+3. Install required packages:
 
 ```bash
    pip install -r requirements.txt
@@ -92,3 +94,33 @@ make run       # start the backend server
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
 
 Set the `SOAP_ROOT` environment variable if your Soap directory is not `~/Soap`.
+
+## 💃 Restoring ATI Engine Backup
+
+Use `restore_ati.sh` to download the latest snapshot from your Google
+Cloud bucket and restore it locally.
+
+1. Ensure `gsutil` is authenticated (`gcloud auth login`).
+2. Run the script from the repository root:
+
+   ```bash
+   bash restore_ati.sh
+   ```
+
+   The script copies the archive from GCS and invokes `restore_now.py`
+   to unpack it under `$SOAP_ROOT`.
+3. Start the engine with `make run` or by running `codex_controller.py`.
+
+## 🔀 Switching Engines
+
+All utilities operate on the directory defined by `$SOAP_ROOT`. Set this
+variable to select either the legacy Soap engine or the production
+`ATI_ENGINE_MESH_PROD` directory:
+
+```bash
+export SOAP_ROOT=~/Soap                 # legacy system
+export SOAP_ROOT=~/ATI_ENGINE_MESH_PROD # production engine
+```
+
+After changing `SOAP_ROOT`, rerun any helper scripts or the controller
+to work with that engine.
