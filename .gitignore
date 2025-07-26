@@ -18,6 +18,10 @@ __pycache__/
 # ZIP archives
 *.zip
 
+# Backup zips
+ATI_RotorFusion_FullBackup.zip
+backup/*.zip
+
 # Vector store data
 vector_store/
 
