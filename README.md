@@ -23,64 +23,13 @@ Other components include:
 - Logging and state backup  
 - Vectorized search indexing  
 
-## Installation
-
-Create and activate a Python virtual environment, then install dependencies:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-## Installation
-
-Create and activate a Python virtual environment, then install dependencies:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-## Installation
-
-Create and activate a Python virtual environment, then install dependencies:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Verify the environment by running the tests:
-
-```bash
-pytest -q
-```
-
-## Installation
-
-Create and activate a Python virtual environment, then install dependencies:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Verify the environment by running the tests:
-
-```bash
-pytest -q
-```
-
 ---
 
 ## 📦 Installation
 
 1. Install Python 3.11 or later.
-2. Install required packages:
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
 
-```bash
-pip install -r requirements.txt
