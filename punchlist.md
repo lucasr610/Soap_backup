@@ -14,3 +14,4 @@
 - [x] Replaced HTML frontend with React + Tailwind
 - [x] Finalized system delivery with full tooling and CI
 - [x] Fixed Makefile tabs for test target
+- [x] Removed backup zip and restored stub upload_to_gcs
