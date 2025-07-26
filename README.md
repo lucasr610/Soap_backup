@@ -20,7 +20,6 @@ This platform uses a chain of **five protected agents** to handle SOP synthesis:
 
 Other components include:
 - Snapshot rotator
-- GCS cloud sync
 - Logging and state backup
 - Vectorized search indexing
 
@@ -38,8 +37,8 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   - `SOAP_ROOT` — override Soap directory (default: `~/Soap`)
   - `BACKUP_LOG_PATH` — default is `~/Soap/logs/backup_now.log`
 
-- `restore_now.py`  
-  Triggers `+SPIN-UP+` to restore system state from GCS archive.  
+- `restore_now.py`
+  Triggers `+SPIN-UP+` to restore system state from a local snapshot.
   Optional:
   - `RESTORE_LOG_PATH` — default is `~/Soap/logs/restore_now.log`
 
@@ -59,7 +58,7 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
   Creates zip snapshots of the entire Soap directory and keeps the last five archives.
 
 - `upload_to_gcs.py`
-  Uploads a snapshot or other file to a specified Google Cloud Storage bucket.
+  Stub script for uploading a file to Google Cloud Storage. Not used in local development.
 
 ---
 
@@ -80,6 +79,14 @@ The web dashboard is built with **React** and **Tailwind CSS**. It provides tabs
 
 ```bash
    pip install -r requirements.txt
+```
+
+You can also use the `Makefile` helpers for a consistent workflow:
+
+```bash
+make install   # install dependencies
+make test      # run the unit tests
+make run       # start the backend server
 ```
 
 Copy `.env.example` to `.env` and adjust any paths or bucket names for your environment.
