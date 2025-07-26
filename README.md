@@ -32,4 +32,3 @@ Other components include:
 
 ```bash
 pip install -r requirements.txt
-
