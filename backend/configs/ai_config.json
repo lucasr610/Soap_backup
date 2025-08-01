@@ -1,0 +1,16 @@
+{
+  "general": {
+    "ollama_host": "http://localhost:11434"
+  },
+  "models": {
+    "ollama_mistral_7b": {
+      "provider": "ollama",
+      "name": "mistral:latest",
+      "enabled": true,
+      "parameters": {
+        "temperature": 0.7,
+        "max_tokens": 1024
+      }
+    }
+  }
+}
